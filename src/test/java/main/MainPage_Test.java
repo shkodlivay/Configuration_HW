@@ -14,31 +14,20 @@ public class MainPage_Test extends BaseSuite {
     public void checkTextInput() {
         logger.info("Starting test checkTextInput");
 
-        try {
-            String text = "ОТУС";
-            logger.debug("Test text to input: {}", text);
+        String text = "ОТУС";
+        logger.debug("Test text to input: {}", text);
 
-            driver = new WebDriverFactory().getDriver("headless");
-            logger.debug("WebDriver initialized in headless mode");
+        driver = new WebDriverFactory().getDriver("headless");
+        logger.debug("WebDriver initialized in headless mode");
 
-            MainPage mainPage = new MainPage(driver);
-            logger.debug("MainPage object created");
+        MainPage mainPage = new MainPage(driver);
+        logger.debug("MainPage object created");
 
-            mainPage.open();
-            logger.info("Main page opened");
+        mainPage.open();
+        logger.info("Main page opened");
 
-            mainPage.inputText(text);
-            logger.info("Text '{}' input completed", text);
-
-        } catch (Exception e) {
-            logger.error("Error occurred during checkTextInput test execution", e);
-            throw e;
-        } finally {
-            if (driver != null) {
-                driver.quit();
-                logger.info("WebDriver quit successfully");
-            }
-        }
+        mainPage.inputText(text);
+        logger.info("Text '{}' input completed", text);
 
         logger.info("checkTextInput test completed successfully");
     }
@@ -46,29 +35,18 @@ public class MainPage_Test extends BaseSuite {
     @Test
     public void checkModalWindow() {
         logger.info("Starting checkModalWindow test");
+        
+        driver = new WebDriverFactory().getDriver("kiosk");
+        logger.debug("WebDriver initialized for kiosk mode");
 
-        try {
-            driver = new WebDriverFactory().getDriver("kiosk");
-            logger.debug("WebDriver initialized for kiosk mode");
+        MainPage mainPage = new MainPage(driver);
+        logger.debug("MainPage object created");
 
-            MainPage mainPage = new MainPage(driver);
-            logger.debug("MainPage object created");
+        mainPage.open();
+        logger.info("Main page opened");
 
-            mainPage.open();
-            logger.info("Main page opened");
-
-            mainPage.clickOpenModal();
-            logger.info("Clicked on open modal button");
-
-        } catch (Exception e) {
-            logger.error("Error occurred during test execution", e);
-            throw e;
-        } finally {
-            if (driver != null) {
-                driver.quit();
-                logger.info("WebDriver quit successfully");
-            }
-        }
+        mainPage.clickOpenModal();
+        logger.info("Clicked on open modal button");
 
         logger.info("checkModalWindow test completed");
     }
@@ -78,38 +56,27 @@ public class MainPage_Test extends BaseSuite {
     public void checkMailForm() {
         logger.info("Starting checkMailForm test");
 
-        try {
-            String name = "Test_name";
-            String email = "test@example.com";
-            logger.debug("Test data - Name: {}, Email: {}", name, email);
+        String name = "Test_name";
+        String email = "test@example.com";
+        logger.debug("Test data - Name: {}, Email: {}", name, email);
 
-            driver = new WebDriverFactory().getDriver("fullscreen");
-            logger.debug("WebDriver initialized in fullscreen mode");
+        driver = new WebDriverFactory().getDriver("fullscreen");
+        logger.debug("WebDriver initialized in fullscreen mode");
 
-            MainPage mainPage = new MainPage(driver);
-            logger.debug("MainPage object created");
+        MainPage mainPage = new MainPage(driver);
+        logger.debug("MainPage object created");
 
-            mainPage.open();
-            logger.info("Main page opened successfully");
+        mainPage.open();
+        logger.info("Main page opened successfully");
 
-            mainPage.inputName(name);
-            logger.info("Entered name: {}", name);
+        mainPage.inputName(name);
+        logger.info("Entered name: {}", name);
 
-            mainPage.inputEmail(email);
-            logger.info("Entered email: {}", email.replaceAll(".+@", "***@")); // Basic email masking
+        mainPage.inputEmail(email);
+        logger.info("Entered email: {}", email.replaceAll(".+@", "***@")); // Basic email masking
 
-            mainPage.clickButtonSend();
-            logger.info("Clicked send button");
-
-        } catch (Exception e) {
-            logger.error("Test failed while checking mail form", e);
-            throw e;
-        } finally {
-            if (driver != null) {
-                driver.quit();
-                logger.info("WebDriver terminated");
-            }
-        }
+        mainPage.clickButtonSend();
+        logger.info("Clicked send button");
 
         logger.info("checkMailForm test completed successfully");
     }
